@@ -1,0 +1,6 @@
+Change Component Footprint: Designator=U4 Old Footprint=TECO-1825910-6_V New Footprint=PUSHBUTTON
+Change Component Footprint: Designator=U5 Old Footprint=TECO-1825910-6_V New Footprint=PUSHBUTTON
+Added Room: Name=Sheet
+Added Room: Name=SM1
+Added Room: Name=SM2
+Added Room: Name=SM3

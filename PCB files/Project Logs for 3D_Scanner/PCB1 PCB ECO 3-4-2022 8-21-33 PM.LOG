@@ -1,0 +1,94 @@
+Added Component: Designator=J1(JST_4P)
+Added Component: Designator=J2(JST_2P)
+Added Component: Designator=J4(SHARP_IR)
+Added Component: Designator=J5(SHARP_IR)
+Added Component: Designator=J6(TTL)
+Added Component: Designator=J7(ENDSTOP)
+Added Component: Designator=J8(ENDSTOP)
+Added Component: Designator=U1(A4988)
+Added Component: Designator=U4(ESP_SoC_Module)
+Added Component: Designator=U5(SD_MODULE)
+Added Pin To Net: NetName=NetJ1_1 Pin=J1-1
+Added Pin To Net: NetName=NetJ1_2 Pin=J1-2
+Added Pin To Net: NetName=NetJ1_3 Pin=J1-3
+Added Pin To Net: NetName=NetJ1_4 Pin=J1-4
+Added Pin To Net: NetName=+12 Pin=J2-1
+Added Pin To Net: NetName=GND Pin=J2-2
+Added Pin To Net: NetName=+5 Pin=J4-1
+Added Pin To Net: NetName=GND Pin=J4-2
+Added Pin To Net: NetName=SHARP1 Pin=J4-3
+Added Pin To Net: NetName=+5 Pin=J5-1
+Added Pin To Net: NetName=GND Pin=J5-2
+Added Pin To Net: NetName=SHARP2 Pin=J5-3
+Added Pin To Net: NetName=+5 Pin=J6-1
+Added Pin To Net: NetName=RXD Pin=J6-2
+Added Pin To Net: NetName=TXD Pin=J6-3
+Added Pin To Net: NetName=GND Pin=J6-4
+Added Pin To Net: NetName=+5 Pin=J7-1
+Added Pin To Net: NetName=GND Pin=J7-2
+Added Pin To Net: NetName=ES_1 Pin=J7-3
+Added Pin To Net: NetName=+5 Pin=J8-1
+Added Pin To Net: NetName=GND Pin=J8-2
+Added Pin To Net: NetName=ES_2 Pin=J8-3
+Added Pin To Net: NetName=NetU1_1 Pin=U1-1
+Added Pin To Net: NetName=NetU1_5 Pin=U1-5
+Added Pin To Net: NetName=NetU1_5 Pin=U1-6
+Added Pin To Net: NetName=NetU1_7 Pin=U1-7
+Added Pin To Net: NetName=NetU1_8 Pin=U1-8
+Added Pin To Net: NetName=GND Pin=U1-9
+Added Pin To Net: NetName=+5 Pin=U1-10
+Added Pin To Net: NetName=NetJ1_1 Pin=U1-11
+Added Pin To Net: NetName=NetJ1_2 Pin=U1-12
+Added Pin To Net: NetName=NetJ1_3 Pin=U1-13
+Added Pin To Net: NetName=NetJ1_4 Pin=U1-14
+Added Pin To Net: NetName=GND Pin=U1-15
+Added Pin To Net: NetName=+12 Pin=U1-16
+Added Pin To Net: NetName=GND Pin=U4-1
+Added Pin To Net: NetName=+3V3 Pin=U4-2
+Added Pin To Net: NetName=NetR1_2 Pin=U4-3
+Added Pin To Net: NetName=STEP1 Pin=U4-6
+Added Pin To Net: NetName=STEP2 Pin=U4-7
+Added Pin To Net: NetName=STEP3 Pin=U4-8
+Added Pin To Net: NetName=DIR1 Pin=U4-9
+Added Pin To Net: NetName=DIR2 Pin=U4-10
+Added Pin To Net: NetName=DIR3 Pin=U4-11
+Added Pin To Net: NetName=EN1 Pin=U4-12
+Added Pin To Net: NetName=EN2 Pin=U4-13
+Added Pin To Net: NetName=EN3 Pin=U4-14
+Added Pin To Net: NetName=GND Pin=U4-15
+Added Pin To Net: NetName=NetS1_1 Pin=U4-24
+Added Pin To Net: NetName=SHARP2 Pin=U4-25
+Added Pin To Net: NetName=SHARP1 Pin=U4-26
+Added Pin To Net: NetName=ES_2 Pin=U4-27
+Added Pin To Net: NetName=ES_1 Pin=U4-28
+Added Pin To Net: NetName=CS_SD Pin=U4-29
+Added Pin To Net: NetName=SCK Pin=U4-30
+Added Pin To Net: NetName=MISO Pin=U4-31
+Added Pin To Net: NetName=TXD Pin=U4-34
+Added Pin To Net: NetName=RXD Pin=U4-35
+Added Pin To Net: NetName=MOSI Pin=U4-37
+Added Pin To Net: NetName=GND Pin=U4-38
+Added Pin To Net: NetName=GND Pin=U4-39
+Added Pin To Net: NetName=GND Pin=U5-1
+Added Pin To Net: NetName=+5 Pin=U5-2
+Added Pin To Net: NetName=MISO Pin=U5-3
+Added Pin To Net: NetName=MOSI Pin=U5-4
+Added Pin To Net: NetName=SCK Pin=U5-5
+Added Pin To Net: NetName=CS_SD Pin=U5-6
+Added Member To Class: ClassName=Repeat(M_Driver,3) Member=Component C1 Cap Pol1
+Added Member To Class: ClassName=Sheet Member=Component C4 Cap2
+Added Member To Class: ClassName=Sheet Member=Component C5 Cap2
+Added Member To Class: ClassName=Sheet Member=Component C6 Cap2
+Added Member To Class: ClassName=Repeat(M_Driver,3) Member=Component J1 connector
+Added Member To Class: ClassName=Sheet Member=Component J2 FAN
+Added Member To Class: ClassName=Sheet Member=Component J4 Sharp IR
+Added Member To Class: ClassName=Sheet Member=Component J5 Sharp IR
+Added Member To Class: ClassName=Sheet Member=Component J6 connector
+Added Member To Class: ClassName=Sheet Member=Component J7 Endstop
+Added Member To Class: ClassName=Sheet Member=Component J8 Endstop
+Added Member To Class: ClassName=Sheet Member=Component R1 Res1
+Added Member To Class: ClassName=Sheet Member=Component S1 FLASH
+Added Member To Class: ClassName=Sheet Member=Component S2 SW-PB
+Added Member To Class: ClassName=Repeat(M_Driver,3) Member=Component U1 Stepper Motor Driver
+Added Member To Class: ClassName=Sheet Member=Component U4 esp32
+Added Member To Class: ClassName=Sheet Member=Component U5 SD card

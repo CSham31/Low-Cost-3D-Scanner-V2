@@ -1,0 +1,7 @@
+Added Component: Designator=U7(LM1117_3V3)
+Added Pin To Net: NetName=GND Pin=U7-1
+Added Pin To Net: NetName=+3V3 Pin=U7-2
+Added Pin To Net: NetName=+5 Pin=U7-3
+Added Pin To Net: NetName=GND Pin=U7-4
+Added Member To Class: ClassName=Sheet Member=Component IC1 LM1117IMPX3.3_NOPB
+Added Member To Class: ClassName=Sheet Member=Component U7 LM1117_3V3

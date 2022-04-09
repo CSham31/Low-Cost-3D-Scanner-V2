@@ -1,0 +1,815 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD20\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">3/5/2022</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">10:36:32 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc" class="file"><acronym title="C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc">C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">157</td></tr>
+</table>
+</td>
+</table><a name="IDLDQK3AO2OXDXKG4CXABF1ZEPQIDASQPTPOFAQ5GZAL1PGUCWKQPK"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDHJ0L4D34O4U0JMT3YXGITBM02K5U54CCZR04KREVSVTAMNOYIS">Clearance Constraint (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDH1BUEGRYWDFUO4ATA0H5QAHJ3D51SUNDEGFUWLCSYHWZGEBES53F">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDIY2C212FZPD1PODD5GHXIOOCOMTLGWSQEPPPNEOWGXSD43WKL1YE">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">95</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDFO2MJAC5AIHTBZA4C2GCGBBNQM4APIBW5XBTOMGSRV0ZBYRIR1CI">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDT5PHJGY3H0VMO0RRVBEUSXUXZISBTOQVSWKBPBGTKTFT404VMR2G">Width Constraint (Min=0.254mm) (Max=0.254mm) (Preferred=0.254mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID5ZCMH12CBAQABYOPU2YVRSLGEBKZSGJDQA4STKKFH1AFMD1GBPIH">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYYRS4KEHSGKRHHER3UIAOIQDDN4Y2SAPTXRKQTOFZPYPENLUE4YL">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">7</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGUGCR1HIDACVNRNLOTY5M1N4MDQMW5O5BEBODEKWHCVRTIP41J">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDSGA0CNP10V5UNFTRWP33YKMWLPQNLXGPR3H3UZKICPTUWZ1O3PAJ">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">35</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDFQZJ0RQOCZ4OGQL0XKF3QX42NJ1KTXMZCAK45KKQUULOTKN2H5HD">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">19</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDWHUSVFZMJ4V5L22VYE4KZZYERMMHW03OBGSJA4HLB25WGA5CJDMB">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDYGCSEDIHIJQEPICEEOGCWGQ0DI2CB5RXKOEIHCPK5KAYCE2N0JVI">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDAI5RC2H04V3RCFAEDBBTD3SEWNCGOOEYMDR4JXLI51JHHBLITY5F">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">157</td>
+</tr>
+</table><br><a name="IDIY2C212FZPD1PODD5GHXIOOCOMTLGWSQEPPPNEOWGXSD43WKL1YE"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3082.378mil|Location2.X=3162.622mil|Location1.Y=2767.378mil|Location2.Y=3757.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3082.378mil|Location2.X=3162.622mil|Location1.Y=2767.378mil|Location2.Y=3757.622mil|Absolute=True">Un-Routed Net Constraint: Net +12 Between Pad C1_SM1-1(78.994mm,94.742mm) on Multi-Layer And Pad C1_SM2-1(79.629mm,70.993mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2408.952mil|Location2.X=3137.622mil|Location1.Y=3702.378mil|Location2.Y=4693.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2408.952mil|Location2.X=3137.622mil|Location1.Y=3702.378mil|Location2.Y=4693.213mil|Absolute=True">Un-Routed Net Constraint: Net +12 Between Pad J5-1(61.889mm,117.856mm) on Multi-Layer And Pad C1_SM1-1(78.994mm,94.742mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3082.378mil|Location2.X=3569.747mil|Location1.Y=3702.378mil|Location2.Y=3952.109mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3082.378mil|Location2.X=3569.747mil|Location1.Y=3702.378mil|Location2.Y=3952.109mil|Absolute=True">Un-Routed Net Constraint: Net +12 Between Pad C1_SM1-1(78.994mm,94.742mm) on Multi-Layer And Pad U1_SM1-16(89.97mm,99.032mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3082.378mil|Location2.X=3162.622mil|Location1.Y=2567.378mil|Location2.Y=3557.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3082.378mil|Location2.X=3162.622mil|Location1.Y=2567.378mil|Location2.Y=3557.622mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C1_SM1-2(78.994mm,89.662mm) on Multi-Layer And Pad C1_SM2-2(79.629mm,65.913mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3082.378mil|Location2.X=3668.171mil|Location1.Y=3502.378mil|Location2.Y=3952.109mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3082.378mil|Location2.X=3668.171mil|Location1.Y=3502.378mil|Location2.Y=3952.109mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C1_SM1-2(78.994mm,89.662mm) on Multi-Layer And Pad U1_SM1-15(92.47mm,99.032mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3107.378mil|Location2.X=3599.747mil|Location1.Y=2767.378mil|Location2.Y=3020.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3107.378mil|Location2.X=3599.747mil|Location1.Y=2767.378mil|Location2.Y=3020.9mil|Absolute=True">Un-Routed Net Constraint: Net +12 Between Pad C1_SM2-1(79.629mm,70.993mm) on Multi-Layer And Pad U1_SM2-16(90.732mm,75.379mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3107.378mil|Location2.X=3698.171mil|Location1.Y=2567.378mil|Location2.Y=3020.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3107.378mil|Location2.X=3698.171mil|Location1.Y=2567.378mil|Location2.Y=3020.9mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C1_SM2-2(79.629mm,65.913mm) on Multi-Layer And Pad U1_SM2-15(93.232mm,75.379mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.787mil|Location2.X=3162.622mil|Location1.Y=2222.378mil|Location2.Y=2622.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2251.787mil|Location2.X=3162.622mil|Location1.Y=2222.378mil|Location2.Y=2622.622mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U3-1(58.547mm,57.15mm) on Multi-Layer And Pad C1_SM2-2(79.629mm,65.913mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2222.634mil|Location2.X=3157.622mil|Location1.Y=1328.854mil|Location2.Y=1807.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2222.634mil|Location2.X=3157.622mil|Location1.Y=1328.854mil|Location2.Y=1807.622mil|Absolute=True">Un-Routed Net Constraint: Net +12 Between Pad J8-1(58.928mm,36.226mm) on Multi-Layer And Pad C1_SM3-1(79.502mm,45.212mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3102.378mil|Location2.X=3594.747mil|Location1.Y=1752.378mil|Location2.Y=2005.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3102.378mil|Location2.X=3594.747mil|Location1.Y=1752.378mil|Location2.Y=2005.9mil|Absolute=True">Un-Routed Net Constraint: Net +12 Between Pad C1_SM3-1(79.502mm,45.212mm) on Multi-Layer And Pad U1_SM3-16(90.605mm,49.598mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3102.378mil|Location2.X=3693.171mil|Location1.Y=1552.378mil|Location2.Y=2005.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3102.378mil|Location2.X=3693.171mil|Location1.Y=1552.378mil|Location2.Y=2005.9mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C1_SM3-2(79.502mm,40.132mm) on Multi-Layer And Pad U1_SM3-15(93.105mm,49.598mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1287.378mil|Location2.X=1347.622mil|Location1.Y=4043.441mil|Location2.Y=4286.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1287.378mil|Location2.X=1347.622mil|Location1.Y=4043.441mil|Location2.Y=4286.559mil|Absolute=True">Un-Routed Net Constraint: Net NetC4_1 Between Pad C4-1(33.401mm,108.077mm) on Top Layer And Pad R1-1(33.528mm,103.505mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1221mil|Location2.X=1342.622mil|Location1.Y=4223.441mil|Location2.Y=4719mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1221mil|Location2.X=1342.622mil|Location1.Y=4223.441mil|Location2.Y=4719mil|Absolute=True">Un-Routed Net Constraint: Net NetC4_1 Between Pad U4-B2(31.75mm,119.126mm) on Top Layer [Unplated] And Pad C4-1(33.401mm,108.077mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1088.284mil|Location2.X=1413.488mil|Location1.Y=3830.922mil|Location2.Y=4286.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1088.284mil|Location2.X=1413.488mil|Location1.Y=3830.922mil|Location2.Y=4286.559mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U2-38(28.194mm,98.407mm) on Top Layer [Unplated] And Pad C4-2(35.201mm,108.077mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1358.244mil|Location2.X=1499mil|Location1.Y=4223.441mil|Location2.Y=4500.732mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1358.244mil|Location2.X=1499mil|Location1.Y=4223.441mil|Location2.Y=4500.732mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C4-2(35.201mm,108.077mm) on Top Layer And Pad U5-B2(37.338mm,113.582mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1358.244mil|Location2.X=1630.417mil|Location1.Y=4063.559mil|Location2.Y=4286.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1358.244mil|Location2.X=1630.417mil|Location1.Y=4063.559mil|Location2.Y=4286.559mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C4-2(35.201mm,108.077mm) on Top Layer And Pad U7-4(40.436mm,104.916mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1881.417mil|Location2.X=2417.366mil|Location1.Y=1144.848mil|Location2.Y=1523.586mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1881.417mil|Location2.X=2417.366mil|Location1.Y=1144.848mil|Location2.Y=1523.586mil|Absolute=True">Un-Routed Net Constraint: Net +12 Between Pad C5-1(48.49mm,29.881mm) on Top Layer And Pad J8-1(58.928mm,36.226mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1732.773mil|Location2.X=1936.661mil|Location1.Y=1144.848mil|Location2.Y=1224.382mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1732.773mil|Location2.X=1936.661mil|Location1.Y=1144.848mil|Location2.Y=1224.382mil|Absolute=True">Un-Routed Net Constraint: Net +12 Between Pad U6-1(45.364mm,30.248mm) on Top Layer [Unplated] And Pad C5-1(48.49mm,29.881mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1952.283mil|Location2.X=2007.527mil|Location1.Y=1144.848mil|Location2.Y=1412.966mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1952.283mil|Location2.X=2007.527mil|Location1.Y=1144.848mil|Location2.Y=1412.966mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C5-2(50.29mm,29.881mm) on Top Layer And Pad C6-2(50.29mm,35.088mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1952.283mil|Location2.X=2417.366mil|Location1.Y=1092.634mil|Location2.Y=1287.366mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1952.283mil|Location2.X=2417.366mil|Location1.Y=1092.634mil|Location2.Y=1287.366mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C5-2(50.29mm,29.881mm) on Top Layer And Pad J8-2(58.928mm,30.226mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1881.417mil|Location2.X=2358.213mil|Location1.Y=1349.848mil|Location2.Y=2377.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1881.417mil|Location2.X=2358.213mil|Location1.Y=1349.848mil|Location2.Y=2377.622mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad C6-1(48.49mm,35.088mm) on Top Layer And Pad U3-2(58.547mm,59.69mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1732.773mil|Location2.X=1936.661mil|Location1.Y=1338.431mil|Location2.Y=1412.966mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1732.773mil|Location2.X=1936.661mil|Location1.Y=1338.431mil|Location2.Y=1412.966mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad U6-2(45.364mm,34.848mm) on Top Layer [Unplated] And Pad C6-1(48.49mm,35.088mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1672.181mil|Location2.X=2007.527mil|Location1.Y=1349.848mil|Location2.Y=1663.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1672.181mil|Location2.X=2007.527mil|Location1.Y=1349.848mil|Location2.Y=1663.449mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad R2-1(43.175mm,41.45mm) on Top Layer And Pad C6-2(50.29mm,35.088mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1986.512mil|Location2.X=2358.213mil|Location1.Y=2322.378mil|Location2.Y=4256.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1986.512mil|Location2.X=2358.213mil|Location1.Y=2322.378mil|Location2.Y=4256.559mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad C7-1(51.159mm,107.315mm) on Top Layer And Pad U3-2(58.547mm,59.69mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1801.551mil|Location2.X=2041.756mil|Location1.Y=4193.441mil|Location2.Y=4256.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1801.551mil|Location2.X=2041.756mil|Location1.Y=4193.441mil|Location2.Y=4256.559mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad U7-3(46.736mm,107.216mm) on Top Layer [Unplated] And Pad C7-1(51.159mm,107.315mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2052.811mil|Location2.X=2112.622mil|Location1.Y=3993.441mil|Location2.Y=4256.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2052.811mil|Location2.X=2112.622mil|Location1.Y=3993.441mil|Location2.Y=4256.559mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C8-2(52.843mm,102.235mm) on Top Layer And Pad C7-2(52.959mm,107.315mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2057.378mil|Location2.X=2167.622mil|Location1.Y=4193.441mil|Location2.Y=4693.195mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2057.378mil|Location2.X=2167.622mil|Location1.Y=4193.441mil|Location2.Y=4693.195mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C7-2(52.959mm,107.315mm) on Top Layer And Pad J2-4(54.356mm,117.856mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1801.551mil|Location2.X=2037.189mil|Location1.Y=3993.441mil|Location2.Y=4153.252mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1801.551mil|Location2.X=2037.189mil|Location1.Y=3993.441mil|Location2.Y=4153.252mil|Absolute=True">Un-Routed Net Constraint: Net +3V3 Between Pad U7-2(46.736mm,104.916mm) on Top Layer [Unplated] And Pad C8-1(51.043mm,102.235mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1801.551mil|Location2.X=2108.055mil|Location1.Y=3993.441mil|Location2.Y=4062.701mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1801.551mil|Location2.X=2108.055mil|Location1.Y=3993.441mil|Location2.Y=4062.701mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U7-1(46.736mm,102.616mm) on Top Layer [Unplated] And Pad C8-2(52.843mm,102.235mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1592.457mil|Location2.X=1839.198mil|Location1.Y=1338.431mil|Location2.Y=1549.275mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1592.457mil|Location2.X=1839.198mil|Location1.Y=1338.431mil|Location2.Y=1549.275mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad D1-1(41.3mm,38.5mm) on Top Layer And Pad U6-2(45.364mm,34.848mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1730.253mil|Location2.X=1798.291mil|Location1.Y=1482.22mil|Location2.Y=1663.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1730.253mil|Location2.X=1798.291mil|Location1.Y=1482.22mil|Location2.Y=1663.449mil|Absolute=True">Un-Routed Net Constraint: Net NetD1_2 Between Pad D1-2(44.8mm,38.5mm) on Top Layer And Pad R2-2(44.975mm,41.45mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1099.979mil|Location2.X=1681.717mil|Location1.Y=1139.611mil|Location2.Y=1423.202mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1099.979mil|Location2.X=1681.717mil|Location1.Y=1139.611mil|Location2.Y=1423.202mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad Free-2(30.541mm,32.895mm) on Multi-Layer And Pad U6-3(39.114mm,32.548mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3711.353mil|Location2.X=4623.213mil|Location1.Y=3845.683mil|Location2.Y=3952.109mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3711.353mil|Location2.X=4623.213mil|Location1.Y=3845.683mil|Location2.Y=3952.109mil|Absolute=True">Un-Routed Net Constraint: Net NetJ1_SM1_1 Between Pad U1_SM1-14(94.97mm,99.032mm) on Multi-Layer And Pad J1_SM1-1(116.078mm,98.456mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3809.779mil|Location2.X=4623.213mil|Location1.Y=3748.591mil|Location2.Y=3952.109mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3809.779mil|Location2.X=4623.213mil|Location1.Y=3748.591mil|Location2.Y=3952.109mil|Absolute=True">Un-Routed Net Constraint: Net NetJ1_SM1_2 Between Pad U1_SM1-13(97.47mm,99.032mm) on Multi-Layer And Pad J1_SM1-2(116.078mm,95.916mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3908.203mil|Location2.X=4623.213mil|Location1.Y=3648.591mil|Location2.Y=3952.109mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3908.203mil|Location2.X=4623.213mil|Location1.Y=3648.591mil|Location2.Y=3952.109mil|Absolute=True">Un-Routed Net Constraint: Net NetJ1_SM1_3 Between Pad U1_SM1-12(99.97mm,99.032mm) on Multi-Layer And Pad J1_SM1-3(116.078mm,93.376mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4006.629mil|Location2.X=4623.213mil|Location1.Y=3548.591mil|Location2.Y=3952.109mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4006.629mil|Location2.X=4623.213mil|Location1.Y=3548.591mil|Location2.Y=3952.109mil|Absolute=True">Un-Routed Net Constraint: Net NetJ1_SM1_4 Between Pad U1_SM1-11(102.47mm,99.032mm) on Multi-Layer And Pad J1_SM1-4(116.078mm,90.836mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3741.353mil|Location2.X=4663.213mil|Location1.Y=2914.474mil|Location2.Y=3020.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3741.353mil|Location2.X=4663.213mil|Location1.Y=2914.474mil|Location2.Y=3020.9mil|Absolute=True">Un-Routed Net Constraint: Net NetJ1_SM2_1 Between Pad U1_SM2-14(95.732mm,75.379mm) on Multi-Layer And Pad J1_SM2-1(117.094mm,74.803mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3839.779mil|Location2.X=4663.213mil|Location1.Y=2817.378mil|Location2.Y=3020.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3839.779mil|Location2.X=4663.213mil|Location1.Y=2817.378mil|Location2.Y=3020.9mil|Absolute=True">Un-Routed Net Constraint: Net NetJ1_SM2_2 Between Pad U1_SM2-13(98.232mm,75.379mm) on Multi-Layer And Pad J1_SM2-2(117.094mm,72.263mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3938.203mil|Location2.X=4663.213mil|Location1.Y=2717.378mil|Location2.Y=3020.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3938.203mil|Location2.X=4663.213mil|Location1.Y=2717.378mil|Location2.Y=3020.9mil|Absolute=True">Un-Routed Net Constraint: Net NetJ1_SM2_3 Between Pad U1_SM2-12(100.732mm,75.379mm) on Multi-Layer And Pad J1_SM2-3(117.094mm,69.723mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4036.629mil|Location2.X=4663.213mil|Location1.Y=2617.378mil|Location2.Y=3020.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4036.629mil|Location2.X=4663.213mil|Location1.Y=2617.378mil|Location2.Y=3020.9mil|Absolute=True">Un-Routed Net Constraint: Net NetJ1_SM2_4 Between Pad U1_SM2-11(103.232mm,75.379mm) on Multi-Layer And Pad J1_SM2-4(117.094mm,67.183mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3736.353mil|Location2.X=4653.213mil|Location1.Y=1899.474mil|Location2.Y=2005.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3736.353mil|Location2.X=4653.213mil|Location1.Y=1899.474mil|Location2.Y=2005.9mil|Absolute=True">Un-Routed Net Constraint: Net NetJ1_SM3_1 Between Pad U1_SM3-14(95.605mm,49.598mm) on Multi-Layer And Pad J1_SM3-1(116.84mm,49.022mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3834.779mil|Location2.X=4653.213mil|Location1.Y=1802.378mil|Location2.Y=2005.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3834.779mil|Location2.X=4653.213mil|Location1.Y=1802.378mil|Location2.Y=2005.9mil|Absolute=True">Un-Routed Net Constraint: Net NetJ1_SM3_2 Between Pad U1_SM3-13(98.105mm,49.598mm) on Multi-Layer And Pad J1_SM3-2(116.84mm,46.482mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3933.203mil|Location2.X=4653.213mil|Location1.Y=1702.378mil|Location2.Y=2005.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3933.203mil|Location2.X=4653.213mil|Location1.Y=1702.378mil|Location2.Y=2005.9mil|Absolute=True">Un-Routed Net Constraint: Net NetJ1_SM3_3 Between Pad U1_SM3-12(100.605mm,49.598mm) on Multi-Layer And Pad J1_SM3-3(116.84mm,43.942mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4031.629mil|Location2.X=4653.213mil|Location1.Y=1602.378mil|Location2.Y=2005.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4031.629mil|Location2.X=4653.213mil|Location1.Y=1602.378mil|Location2.Y=2005.9mil|Absolute=True">Un-Routed Net Constraint: Net NetJ1_SM3_4 Between Pad U1_SM3-11(103.105mm,49.598mm) on Multi-Layer And Pad J1_SM3-4(116.84mm,41.402mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1812.378mil|Location2.X=2876.106mil|Location1.Y=4581.787mil|Location2.Y=4693.195mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1812.378mil|Location2.X=2876.106mil|Location1.Y=4581.787mil|Location2.Y=4693.195mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad J2-1(46.736mm,117.856mm) on Multi-Layer And Pad J6-1(72.351mm,117.729mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1801.551mil|Location2.X=1878.449mil|Location1.Y=4198.402mil|Location2.Y=4693.195mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1801.551mil|Location2.X=1878.449mil|Location1.Y=4198.402mil|Location2.Y=4693.195mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad U7-3(46.736mm,107.216mm) on Top Layer [Unplated] And Pad J2-1(46.736mm,117.856mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1238.284mil|Location2.X=1967.622mil|Location1.Y=3830.922mil|Location2.Y=4693.195mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1238.284mil|Location2.X=1967.622mil|Location1.Y=3830.922mil|Location2.Y=4693.195mil|Absolute=True">Un-Routed Net Constraint: Net RXD Between Pad U2-35(32.004mm,98.407mm) on Top Layer [Unplated] And Pad J2-2(49.276mm,117.856mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1288.284mil|Location2.X=2067.622mil|Location1.Y=3830.922mil|Location2.Y=4693.195mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1288.284mil|Location2.X=2067.622mil|Location1.Y=3830.922mil|Location2.Y=4693.195mil|Absolute=True">Un-Routed Net Constraint: Net TXD Between Pad U2-34(33.274mm,98.407mm) on Top Layer [Unplated] And Pad J2-3(51.816mm,117.856mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2112.378mil|Location2.X=2562.622mil|Location1.Y=4586.769mil|Location2.Y=4693.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2112.378mil|Location2.X=2562.622mil|Location1.Y=4586.769mil|Location2.Y=4693.213mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J2-4(54.356mm,117.856mm) on Multi-Layer And Pad J5-2(64.389mm,117.856mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3827.378mil|Location2.X=4392.622mil|Location1.Y=4576.787mil|Location2.Y=4688.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3827.378mil|Location2.X=4392.622mil|Location1.Y=4576.787mil|Location2.Y=4688.213mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad J3-1(97.917mm,117.729mm) on Multi-Layer And Pad J4-1(110.871mm,117.602mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3324.12mil|Location2.X=3882.622mil|Location1.Y=4581.787mil|Location2.Y=4688.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3324.12mil|Location2.X=3882.622mil|Location1.Y=4581.787mil|Location2.Y=4688.213mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad J7-1(85.134mm,117.729mm) on Multi-Layer And Pad J3-1(97.917mm,117.729mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3925.804mil|Location2.X=4491.048mil|Location1.Y=4576.787mil|Location2.Y=4688.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3925.804mil|Location2.X=4491.048mil|Location1.Y=4576.787mil|Location2.Y=4688.213mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J3-2(100.417mm,117.729mm) on Multi-Layer And Pad J4-2(113.371mm,117.602mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3422.546mil|Location2.X=3981.048mil|Location1.Y=4581.787mil|Location2.Y=4688.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3422.546mil|Location2.X=3981.048mil|Location1.Y=4581.787mil|Location2.Y=4688.213mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J7-2(87.634mm,117.729mm) on Multi-Layer And Pad J3-2(100.417mm,117.729mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1688.284mil|Location2.X=4079.472mil|Location1.Y=3830.922mil|Location2.Y=4688.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1688.284mil|Location2.X=4079.472mil|Location1.Y=3830.922mil|Location2.Y=4688.213mil|Absolute=True">Un-Routed Net Constraint: Net SHARP1 Between Pad U2-26(43.434mm,98.407mm) on Top Layer [Unplated] And Pad J3-3(102.917mm,117.729mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4105.053mil|Location2.X=4392.622mil|Location1.Y=3845.683mil|Location2.Y=4683.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4105.053mil|Location2.X=4392.622mil|Location1.Y=3845.683mil|Location2.Y=4683.213mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad U1_SM1-10(104.97mm,99.032mm) on Multi-Layer And Pad J4-1(110.871mm,117.602mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1738.284mil|Location2.X=4589.472mil|Location1.Y=3830.922mil|Location2.Y=4683.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1738.284mil|Location2.X=4589.472mil|Location1.Y=3830.922mil|Location2.Y=4683.213mil|Absolute=True">Un-Routed Net Constraint: Net SHARP2 Between Pad U2-25(44.704mm,98.407mm) on Top Layer [Unplated] And Pad J4-3(115.871mm,117.602mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2507.378mil|Location2.X=2974.532mil|Location1.Y=4581.787mil|Location2.Y=4693.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2507.378mil|Location2.X=2974.532mil|Location1.Y=4581.787mil|Location2.Y=4693.213mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J5-2(64.389mm,117.856mm) on Multi-Layer And Pad J6-2(74.852mm,117.729mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2820.862mil|Location2.X=3379.364mil|Location1.Y=4581.787mil|Location2.Y=4688.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2820.862mil|Location2.X=3379.364mil|Location1.Y=4581.787mil|Location2.Y=4688.213mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad J6-1(72.351mm,117.729mm) on Multi-Layer And Pad J7-1(85.134mm,117.729mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2919.288mil|Location2.X=3477.79mil|Location1.Y=4581.787mil|Location2.Y=4688.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2919.288mil|Location2.X=3477.79mil|Location1.Y=4581.787mil|Location2.Y=4688.213mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J6-2(74.852mm,117.729mm) on Multi-Layer And Pad J7-2(87.634mm,117.729mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1588.284mil|Location2.X=3072.956mil|Location1.Y=3830.922mil|Location2.Y=4688.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1588.284mil|Location2.X=3072.956mil|Location1.Y=3830.922mil|Location2.Y=4688.213mil|Absolute=True">Un-Routed Net Constraint: Net ES_1 Between Pad U2-28(40.894mm,98.407mm) on Top Layer [Unplated] And Pad J6-3(77.351mm,117.729mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3422.546mil|Location2.X=3668.171mil|Location1.Y=3845.683mil|Location2.Y=4688.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3422.546mil|Location2.X=3668.171mil|Location1.Y=3845.683mil|Location2.Y=4688.213mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J7-2(87.634mm,117.729mm) on Multi-Layer And Pad U1_SM1-15(92.47mm,99.032mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1638.284mil|Location2.X=3576.214mil|Location1.Y=3830.922mil|Location2.Y=4688.213mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1638.284mil|Location2.X=3576.214mil|Location1.Y=3830.922mil|Location2.Y=4688.213mil|Absolute=True">Un-Routed Net Constraint: Net ES_2 Between Pad U2-27(42.164mm,98.407mm) on Top Layer [Unplated] And Pad J7-3(90.134mm,117.729mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2222.634mil|Location2.X=2417.366mil|Location1.Y=1092.634mil|Location2.Y=2277.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2222.634mil|Location2.X=2417.366mil|Location1.Y=1092.634mil|Location2.Y=2277.622mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U3-1(58.547mm,57.15mm) on Multi-Layer And Pad J8-2(58.928mm,30.226mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1188.284mil|Location2.X=1418.488mil|Location1.Y=3161.63mil|Location2.Y=4106.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1188.284mil|Location2.X=1418.488mil|Location1.Y=3161.63mil|Location2.Y=4106.559mil|Absolute=True">Un-Routed Net Constraint: Net NetR1_2 Between Pad U2-3(30.734mm,81.407mm) on Top Layer [Unplated] And Pad R1-2(35.328mm,103.505mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1398.126mil|Location2.X=1727.425mil|Location1.Y=1139.611mil|Location2.Y=1663.449mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1398.126mil|Location2.X=1727.425mil|Location1.Y=1139.611mil|Location2.Y=1663.449mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U6-3(39.114mm,32.548mm) on Top Layer [Unplated] And Pad R2-1(43.175mm,41.45mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1638.284mil|Location2.X=3569.747mil|Location1.Y=3161.63mil|Location2.Y=3448.173mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1638.284mil|Location2.X=3569.747mil|Location1.Y=3161.63mil|Location2.Y=3448.173mil|Absolute=True">Un-Routed Net Constraint: Net EN1 Between Pad U2-12(42.164mm,81.407mm) on Top Layer [Unplated] And Pad U1_SM1-1(89.97mm,86.232mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4105.053mil|Location2.X=4190.297mil|Location1.Y=2914.474mil|Location2.Y=3952.109mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4105.053mil|Location2.X=4190.297mil|Location1.Y=2914.474mil|Location2.Y=3952.109mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad U1_SM1-10(104.97mm,99.032mm) on Multi-Layer And Pad U1_SM2-10(105.732mm,75.379mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3612.927mil|Location2.X=4258.723mil|Location1.Y=3845.683mil|Location2.Y=3952.109mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3612.927mil|Location2.X=4258.723mil|Location1.Y=3845.683mil|Location2.Y=3952.109mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1_SM1-15(92.47mm,99.032mm) on Multi-Layer And Pad U1_SM1-9(107.47mm,99.032mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3908.203mil|Location2.X=4061.873mil|Location1.Y=3341.747mil|Location2.Y=3448.173mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3908.203mil|Location2.X=4061.873mil|Location1.Y=3341.747mil|Location2.Y=3448.173mil|Absolute=True">Un-Routed Net Constraint: Net NetU1_SM1_5 Between Pad U1_SM1-5(99.97mm,86.232mm) on Multi-Layer And Pad U1_SM1-6(102.47mm,86.232mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1338.284mil|Location2.X=4160.297mil|Location1.Y=3161.63mil|Location2.Y=3448.173mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1338.284mil|Location2.X=4160.297mil|Location1.Y=3161.63mil|Location2.Y=3448.173mil|Absolute=True">Un-Routed Net Constraint: Net STEP1 Between Pad U2-6(34.544mm,81.407mm) on Top Layer [Unplated] And Pad U1_SM1-7(104.97mm,86.232mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1488.284mil|Location2.X=4258.723mil|Location1.Y=3161.63mil|Location2.Y=3448.173mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1488.284mil|Location2.X=4258.723mil|Location1.Y=3161.63mil|Location2.Y=3448.173mil|Absolute=True">Un-Routed Net Constraint: Net DIR1 Between Pad U2-9(38.354mm,81.407mm) on Top Layer [Unplated] And Pad U1_SM1-8(107.47mm,86.232mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1688.284mil|Location2.X=3599.747mil|Location1.Y=2410.536mil|Location2.Y=3248.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1688.284mil|Location2.X=3599.747mil|Location1.Y=2410.536mil|Location2.Y=3248.37mil|Absolute=True">Un-Routed Net Constraint: Net EN2 Between Pad U2-13(43.434mm,81.407mm) on Top Layer [Unplated] And Pad U1_SM2-1(90.732mm,62.579mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4130.053mil|Location2.X=4190.297mil|Location1.Y=1899.474mil|Location2.Y=3020.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4130.053mil|Location2.X=4190.297mil|Location1.Y=1899.474mil|Location2.Y=3020.9mil|Absolute=True">Un-Routed Net Constraint: Net +5 Between Pad U1_SM3-10(105.605mm,49.598mm) on Multi-Layer And Pad U1_SM2-10(105.732mm,75.379mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3642.927mil|Location2.X=4288.723mil|Location1.Y=2914.474mil|Location2.Y=3020.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3642.927mil|Location2.X=4288.723mil|Location1.Y=2914.474mil|Location2.Y=3020.9mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1_SM2-15(93.232mm,75.379mm) on Multi-Layer And Pad U1_SM2-9(108.232mm,75.379mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3539.503mil|Location2.X=3599.747mil|Location1.Y=1899.474mil|Location2.Y=3020.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3539.503mil|Location2.X=3599.747mil|Location1.Y=1899.474mil|Location2.Y=3020.9mil|Absolute=True">Un-Routed Net Constraint: Net +12 Between Pad U1_SM3-16(90.605mm,49.598mm) on Multi-Layer And Pad U1_SM2-16(90.732mm,75.379mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3938.203mil|Location2.X=4091.873mil|Location1.Y=2410.536mil|Location2.Y=2516.962mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3938.203mil|Location2.X=4091.873mil|Location1.Y=2410.536mil|Location2.Y=2516.962mil|Absolute=True">Un-Routed Net Constraint: Net NetU1_SM2_5 Between Pad U1_SM2-5(100.732mm,62.579mm) on Multi-Layer And Pad U1_SM2-6(103.232mm,62.579mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1388.284mil|Location2.X=4190.297mil|Location1.Y=2410.536mil|Location2.Y=3248.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1388.284mil|Location2.X=4190.297mil|Location1.Y=2410.536mil|Location2.Y=3248.37mil|Absolute=True">Un-Routed Net Constraint: Net STEP2 Between Pad U2-7(35.814mm,81.407mm) on Top Layer [Unplated] And Pad U1_SM2-7(105.732mm,62.579mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1538.284mil|Location2.X=4288.723mil|Location1.Y=2410.536mil|Location2.Y=3248.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1538.284mil|Location2.X=4288.723mil|Location1.Y=2410.536mil|Location2.Y=3248.37mil|Absolute=True">Un-Routed Net Constraint: Net DIR2 Between Pad U2-10(39.624mm,81.407mm) on Top Layer [Unplated] And Pad U1_SM2-8(108.232mm,62.579mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4228.479mil|Location2.X=4288.723mil|Location1.Y=1899.474mil|Location2.Y=3020.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4228.479mil|Location2.X=4288.723mil|Location1.Y=1899.474mil|Location2.Y=3020.9mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1_SM3-9(108.105mm,49.598mm) on Multi-Layer And Pad U1_SM2-9(108.232mm,75.379mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1738.284mil|Location2.X=3594.747mil|Location1.Y=1395.536mil|Location2.Y=3248.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1738.284mil|Location2.X=3594.747mil|Location1.Y=1395.536mil|Location2.Y=3248.37mil|Absolute=True">Un-Routed Net Constraint: Net EN3 Between Pad U2-14(44.704mm,81.407mm) on Top Layer [Unplated] And Pad U1_SM3-1(90.605mm,36.798mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3637.927mil|Location2.X=4283.723mil|Location1.Y=1899.474mil|Location2.Y=2005.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3637.927mil|Location2.X=4283.723mil|Location1.Y=1899.474mil|Location2.Y=2005.9mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U1_SM3-15(93.105mm,49.598mm) on Multi-Layer And Pad U1_SM3-9(108.105mm,49.598mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3933.203mil|Location2.X=4086.873mil|Location1.Y=1395.536mil|Location2.Y=1501.962mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3933.203mil|Location2.X=4086.873mil|Location1.Y=1395.536mil|Location2.Y=1501.962mil|Absolute=True">Un-Routed Net Constraint: Net NetU1_SM3_5 Between Pad U1_SM3-5(100.605mm,36.798mm) on Multi-Layer And Pad U1_SM3-6(103.105mm,36.798mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1438.284mil|Location2.X=4185.297mil|Location1.Y=1395.536mil|Location2.Y=3248.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1438.284mil|Location2.X=4185.297mil|Location1.Y=1395.536mil|Location2.Y=3248.37mil|Absolute=True">Un-Routed Net Constraint: Net STEP3 Between Pad U2-8(37.084mm,81.407mm) on Top Layer [Unplated] And Pad U1_SM3-7(105.605mm,36.798mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1588.284mil|Location2.X=4283.723mil|Location1.Y=1395.536mil|Location2.Y=3248.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1588.284mil|Location2.X=4283.723mil|Location1.Y=1395.536mil|Location2.Y=3248.37mil|Absolute=True">Un-Routed Net Constraint: Net DIR3 Between Pad U2-11(40.894mm,81.407mm) on Top Layer [Unplated] And Pad U1_SM3-8(108.105mm,36.798mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1088.284mil|Location2.X=1507.701mil|Location1.Y=3161.63mil|Location2.Y=3602.701mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1088.284mil|Location2.X=1507.701mil|Location1.Y=3161.63mil|Location2.Y=3602.701mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U2-1(28.194mm,81.407mm) on Top Layer [Unplated] And Pad U2-39(35.694mm,88.907mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1302.851mil|Location2.X=1842.74mil|Location1.Y=3292.93mil|Location2.Y=3602.701mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1302.851mil|Location2.X=1842.74mil|Location1.Y=3292.93mil|Location2.Y=3602.701mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U2-39(35.694mm,88.907mm) on Top Layer [Unplated] And Pad U2-15(45.704mm,84.192mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1138.284mil|Location2.X=1878.449mil|Location1.Y=3161.63mil|Location2.Y=4153.252mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1138.284mil|Location2.X=1878.449mil|Location1.Y=3161.63mil|Location2.Y=4153.252mil|Absolute=True">Un-Routed Net Constraint: Net +3V3 Between Pad U2-2(29.464mm,81.407mm) on Top Layer [Unplated] And Pad U7-2(46.736mm,104.916mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1541mil|Location2.X=1842.74mil|Location1.Y=3742.93mil|Location2.Y=4500.732mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1541mil|Location2.X=1842.74mil|Location1.Y=3742.93mil|Location2.Y=4500.732mil|Absolute=True">Un-Routed Net Constraint: Net NetU2_24 Between Pad U5-B1(39.878mm,113.582mm) on Top Layer [Unplated] And Pad U2-24(45.704mm,95.622mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1538.284mil|Location2.X=2358.213mil|Location1.Y=2722.378mil|Location2.Y=3917.662mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1538.284mil|Location2.X=2358.213mil|Location1.Y=2722.378mil|Location2.Y=3917.662mil|Absolute=True">Un-Routed Net Constraint: Net CS_SD Between Pad U2-29(39.624mm,98.407mm) on Top Layer [Unplated] And Pad U3-6(58.547mm,69.85mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1488.284mil|Location2.X=2358.213mil|Location1.Y=2622.378mil|Location2.Y=3917.662mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1488.284mil|Location2.X=2358.213mil|Location1.Y=2622.378mil|Location2.Y=3917.662mil|Absolute=True">Un-Routed Net Constraint: Net SCK Between Pad U2-30(38.354mm,98.407mm) on Top Layer [Unplated] And Pad U3-5(58.547mm,67.31mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1438.284mil|Location2.X=2358.213mil|Location1.Y=2422.378mil|Location2.Y=3917.662mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1438.284mil|Location2.X=2358.213mil|Location1.Y=2422.378mil|Location2.Y=3917.662mil|Absolute=True">Un-Routed Net Constraint: Net MISO Between Pad U2-31(37.084mm,98.407mm) on Top Layer [Unplated] And Pad U3-3(58.547mm,62.23mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1138.284mil|Location2.X=2358.213mil|Location1.Y=2522.378mil|Location2.Y=3917.662mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1138.284mil|Location2.X=2358.213mil|Location1.Y=2522.378mil|Location2.Y=3917.662mil|Absolute=True">Un-Routed Net Constraint: Net MOSI Between Pad U2-37(29.464mm,98.407mm) on Top Layer [Unplated] And Pad U3-4(58.547mm,64.77mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1088.284mil|Location2.X=1507.701mil|Location1.Y=3397.851mil|Location2.Y=3917.662mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1088.284mil|Location2.X=1507.701mil|Location1.Y=3397.851mil|Location2.Y=3917.662mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U2-38(28.194mm,98.407mm) on Top Layer [Unplated] And Pad U2-39(35.694mm,88.907mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1121mil|Location2.X=1499mil|Location1.Y=4442.732mil|Location2.Y=4719mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1121mil|Location2.X=1499mil|Location1.Y=4442.732mil|Location2.Y=4719mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U4-B1(29.21mm,119.126mm) on Top Layer [Unplated] And Pad U5-B2(37.338mm,113.582mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1553.52mil|Location2.X=1878.449mil|Location1.Y=4017.299mil|Location2.Y=4197.543mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1553.52mil|Location2.X=1878.449mil|Location1.Y=4017.299mil|Location2.Y=4197.543mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U7-4(40.436mm,104.916mm) on Top Layer [Unplated] And Pad U7-1(46.736mm,102.616mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDYYRS4KEHSGKRHHER3UIAOIQDDN4Y2SAPTXRKQTOFZPYPENLUE4YL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=979.414mil|Location2.X=1110.586mil|Location1.Y=4109.414mil|Location2.Y=4240.586mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=979.414mil|Location2.X=1110.586mil|Location1.Y=4109.414mil|Location2.Y=4240.586mil|Absolute=True">Hole Size Constraint: (3.3mm &gt; 2.54mm) Pad Free-1(26.543mm,106.045mm) on Multi-Layer Actual Hole Size = 3.3mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1136.818mil|Location2.X=1267.99mil|Location1.Y=1229.494mil|Location2.Y=1360.665mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1136.818mil|Location2.X=1267.99mil|Location1.Y=1229.494mil|Location2.Y=1360.665mil|Absolute=True">Hole Size Constraint: (3.3mm &gt; 2.54mm) Pad Free-2(30.541mm,32.895mm) on Multi-Layer Actual Hole Size = 3.3mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4497.407mil|Location2.X=4628.578mil|Location1.Y=1097.8mil|Location2.Y=1228.971mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4497.407mil|Location2.X=4628.578mil|Location1.Y=1097.8mil|Location2.Y=1228.971mil|Absolute=True">Hole Size Constraint: (3.3mm &gt; 2.54mm) Pad Free-3(115.9mm,29.55mm) on Multi-Layer Actual Hole Size = 3.3mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4304.414mil|Location2.X=4435.586mil|Location1.Y=4109.414mil|Location2.Y=4240.586mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4304.414mil|Location2.X=4435.586mil|Location1.Y=4109.414mil|Location2.Y=4240.586mil|Absolute=True">Hole Size Constraint: (3.3mm &gt; 2.54mm) Pad Free-4(110.998mm,106.045mm) on Multi-Layer Actual Hole Size = 3.3mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2257.125mil|Location2.X=2382.875mil|Location1.Y=1363.345mil|Location2.Y=1489.095mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2257.125mil|Location2.X=2382.875mil|Location1.Y=1363.345mil|Location2.Y=1489.095mil|Absolute=True">Hole Size Constraint: (3.162mm &gt; 2.54mm) Pad J8-1(58.928mm,36.226mm) on Multi-Layer Actual Hole Size = 3.162mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2257.125mil|Location2.X=2382.875mil|Location1.Y=1127.125mil|Location2.Y=1252.875mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2257.125mil|Location2.X=2382.875mil|Location1.Y=1127.125mil|Location2.Y=1252.875mil|Absolute=True">Hole Size Constraint: (3.162mm &gt; 2.54mm) Pad J8-2(58.928mm,30.226mm) on Multi-Layer Actual Hole Size = 3.162mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2442.163mil|Location2.X=2567.913mil|Location1.Y=1245.235mil|Location2.Y=1370.985mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2442.163mil|Location2.X=2567.913mil|Location1.Y=1245.235mil|Location2.Y=1370.985mil|Absolute=True">Hole Size Constraint: (3.162mm &gt; 2.54mm) Pad J8-3(63.628mm,33.226mm) on Multi-Layer Actual Hole Size = 3.162mm</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDSGA0CNP10V5UNFTRWP33YKMWLPQNLXGPR3H3UZKICPTUWZ1O3PAJ"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1129.375mil|Location2.X=1140.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1129.375mil|Location2.X=1140.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-1(28.194mm,81.407mm) on Top Layer And Pad U2-2(29.464mm,81.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1579.375mil|Location2.X=1590.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1579.375mil|Location2.X=1590.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-10(39.624mm,81.407mm) on Top Layer And Pad U2-11(40.894mm,81.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1529.375mil|Location2.X=1540.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1529.375mil|Location2.X=1540.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-10(39.624mm,81.407mm) on Top Layer And Pad U2-9(38.354mm,81.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1629.375mil|Location2.X=1640.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1629.375mil|Location2.X=1640.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-11(40.894mm,81.407mm) on Top Layer And Pad U2-12(42.164mm,81.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1679.375mil|Location2.X=1690.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1679.375mil|Location2.X=1690.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-12(42.164mm,81.407mm) on Top Layer And Pad U2-13(43.434mm,81.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1729.375mil|Location2.X=1740.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1729.375mil|Location2.X=1740.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-13(43.434mm,81.407mm) on Top Layer And Pad U2-14(44.704mm,81.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1750.375mil|Location2.X=1761.625mil|Location1.Y=3334.021mil|Location2.Y=3345.271mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1750.375mil|Location2.X=1761.625mil|Location1.Y=3334.021mil|Location2.Y=3345.271mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-15(45.704mm,84.192mm) on Top Layer And Pad U2-16(45.704mm,85.462mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1750.375mil|Location2.X=1761.625mil|Location1.Y=3384.021mil|Location2.Y=3395.271mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1750.375mil|Location2.X=1761.625mil|Location1.Y=3384.021mil|Location2.Y=3395.271mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-16(45.704mm,85.462mm) on Top Layer And Pad U2-17(45.704mm,86.732mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1750.375mil|Location2.X=1761.625mil|Location1.Y=3434.021mil|Location2.Y=3445.271mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1750.375mil|Location2.X=1761.625mil|Location1.Y=3434.021mil|Location2.Y=3445.271mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-17(45.704mm,86.732mm) on Top Layer And Pad U2-18(45.704mm,88.002mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1750.375mil|Location2.X=1761.625mil|Location1.Y=3484.021mil|Location2.Y=3495.271mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1750.375mil|Location2.X=1761.625mil|Location1.Y=3484.021mil|Location2.Y=3495.271mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-18(45.704mm,88.002mm) on Top Layer And Pad U2-19(45.704mm,89.272mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1750.375mil|Location2.X=1761.625mil|Location1.Y=3534.021mil|Location2.Y=3545.271mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1750.375mil|Location2.X=1761.625mil|Location1.Y=3534.021mil|Location2.Y=3545.271mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-19(45.704mm,89.272mm) on Top Layer And Pad U2-20(45.704mm,90.542mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1179.375mil|Location2.X=1190.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1179.375mil|Location2.X=1190.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-2(29.464mm,81.407mm) on Top Layer And Pad U2-3(30.734mm,81.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1750.375mil|Location2.X=1761.625mil|Location1.Y=3584.021mil|Location2.Y=3595.271mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1750.375mil|Location2.X=1761.625mil|Location1.Y=3584.021mil|Location2.Y=3595.271mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-20(45.704mm,90.542mm) on Top Layer And Pad U2-21(45.704mm,91.812mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1750.375mil|Location2.X=1761.625mil|Location1.Y=3634.021mil|Location2.Y=3645.271mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1750.375mil|Location2.X=1761.625mil|Location1.Y=3634.021mil|Location2.Y=3645.271mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-21(45.704mm,91.812mm) on Top Layer And Pad U2-22(45.704mm,93.082mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1750.375mil|Location2.X=1761.625mil|Location1.Y=3684.021mil|Location2.Y=3695.271mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1750.375mil|Location2.X=1761.625mil|Location1.Y=3684.021mil|Location2.Y=3695.271mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-22(45.704mm,93.082mm) on Top Layer And Pad U2-23(45.704mm,94.352mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1750.375mil|Location2.X=1761.625mil|Location1.Y=3734.021mil|Location2.Y=3745.271mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1750.375mil|Location2.X=1761.625mil|Location1.Y=3734.021mil|Location2.Y=3745.271mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-23(45.704mm,94.352mm) on Top Layer And Pad U2-24(45.704mm,95.622mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1729.375mil|Location2.X=1740.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1729.375mil|Location2.X=1740.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-25(44.704mm,98.407mm) on Top Layer And Pad U2-26(43.434mm,98.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1679.375mil|Location2.X=1690.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1679.375mil|Location2.X=1690.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-26(43.434mm,98.407mm) on Top Layer And Pad U2-27(42.164mm,98.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1629.375mil|Location2.X=1640.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1629.375mil|Location2.X=1640.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-27(42.164mm,98.407mm) on Top Layer And Pad U2-28(40.894mm,98.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1579.375mil|Location2.X=1590.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1579.375mil|Location2.X=1590.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-28(40.894mm,98.407mm) on Top Layer And Pad U2-29(39.624mm,98.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1529.375mil|Location2.X=1540.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1529.375mil|Location2.X=1540.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-29(39.624mm,98.407mm) on Top Layer And Pad U2-30(38.354mm,98.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1229.375mil|Location2.X=1240.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1229.375mil|Location2.X=1240.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-3(30.734mm,81.407mm) on Top Layer And Pad U2-4(32.004mm,81.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1479.375mil|Location2.X=1490.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1479.375mil|Location2.X=1490.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-30(38.354mm,98.407mm) on Top Layer And Pad U2-31(37.084mm,98.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1429.375mil|Location2.X=1440.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1429.375mil|Location2.X=1440.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-31(37.084mm,98.407mm) on Top Layer And Pad U2-32(35.814mm,98.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.375mil|Location2.X=1390.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.375mil|Location2.X=1390.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-32(35.814mm,98.407mm) on Top Layer And Pad U2-33(34.544mm,98.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1329.375mil|Location2.X=1340.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1329.375mil|Location2.X=1340.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-33(34.544mm,98.407mm) on Top Layer And Pad U2-34(33.274mm,98.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1279.375mil|Location2.X=1290.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1279.375mil|Location2.X=1290.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-34(33.274mm,98.407mm) on Top Layer And Pad U2-35(32.004mm,98.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1229.375mil|Location2.X=1240.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1229.375mil|Location2.X=1240.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-35(32.004mm,98.407mm) on Top Layer And Pad U2-36(30.734mm,98.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1179.375mil|Location2.X=1190.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1179.375mil|Location2.X=1190.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-36(30.734mm,98.407mm) on Top Layer And Pad U2-37(29.464mm,98.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1129.375mil|Location2.X=1140.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1129.375mil|Location2.X=1140.625mil|Location1.Y=3825.297mil|Location2.Y=3836.547mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-37(29.464mm,98.407mm) on Top Layer And Pad U2-38(28.194mm,98.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1279.375mil|Location2.X=1290.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1279.375mil|Location2.X=1290.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-4(32.004mm,81.407mm) on Top Layer And Pad U2-5(33.274mm,81.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1329.375mil|Location2.X=1340.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1329.375mil|Location2.X=1340.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-5(33.274mm,81.407mm) on Top Layer And Pad U2-6(34.544mm,81.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.375mil|Location2.X=1390.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.375mil|Location2.X=1390.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-6(34.544mm,81.407mm) on Top Layer And Pad U2-7(35.814mm,81.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1429.375mil|Location2.X=1440.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1429.375mil|Location2.X=1440.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-7(35.814mm,81.407mm) on Top Layer And Pad U2-8(37.084mm,81.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1479.375mil|Location2.X=1490.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1479.375mil|Location2.X=1490.625mil|Location1.Y=3156.005mil|Location2.Y=3167.255mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U2-8(37.084mm,81.407mm) on Top Layer And Pad U2-9(38.354mm,81.407mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDFQZJ0RQOCZ4OGQL0XKF3QX42NJ1KTXMZCAK45KKQUULOTKN2H5HD"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1143.194mil|Location2.X=1154.444mil|Location1.Y=4438.607mil|Location2.Y=4449.857mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1143.194mil|Location2.X=1154.444mil|Location1.Y=4438.607mil|Location2.Y=4449.857mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.215mm &lt; 0.254mm) Between Arc (29.18mm,112.576mm) on Top Overlay And Pad U4-A1(29.21mm,113.626mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.215mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1565.556mil|Location2.X=1576.806mil|Location1.Y=4711.875mil|Location2.Y=4723.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1565.556mil|Location2.X=1576.806mil|Location1.Y=4711.875mil|Location2.Y=4723.125mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.215mm &lt; 0.254mm) Between Arc (39.908mm,120.132mm) on Top Overlay And Pad U5-A1(39.878mm,119.082mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.215mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1336.935mil|Location2.X=1348.185mil|Location1.Y=4225.753mil|Location2.Y=4237.003mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1336.935mil|Location2.X=1348.185mil|Location1.Y=4225.753mil|Location2.Y=4237.003mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad C4-1(33.401mm,108.077mm) on Top Layer And Track (34.301mm,107.477mm)(34.301mm,108.677mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1352.581mil|Location2.X=1363.831mil|Location1.Y=4273.316mil|Location2.Y=4286.838mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1352.581mil|Location2.X=1363.831mil|Location1.Y=4273.316mil|Location2.Y=4286.838mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.216mm &lt; 0.254mm) Between Pad C4-2(35.201mm,108.077mm) on Top Layer And Track (34.301mm,107.477mm)(34.301mm,108.677mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.216mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1930.973mil|Location2.X=1942.223mil|Location1.Y=1147.159mil|Location2.Y=1158.409mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1930.973mil|Location2.X=1942.223mil|Location1.Y=1147.159mil|Location2.Y=1158.409mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad C5-1(48.49mm,29.881mm) on Top Layer And Track (49.39mm,29.281mm)(49.39mm,30.481mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1946.62mil|Location2.X=1957.87mil|Location1.Y=1194.722mil|Location2.Y=1208.244mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1946.62mil|Location2.X=1957.87mil|Location1.Y=1194.722mil|Location2.Y=1208.244mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.216mm &lt; 0.254mm) Between Pad C5-2(50.29mm,29.881mm) on Top Layer And Track (49.39mm,29.281mm)(49.39mm,30.481mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.216mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1930.973mil|Location2.X=1942.223mil|Location1.Y=1352.159mil|Location2.Y=1363.409mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1930.973mil|Location2.X=1942.223mil|Location1.Y=1352.159mil|Location2.Y=1363.409mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad C6-1(48.49mm,35.088mm) on Top Layer And Track (49.39mm,34.488mm)(49.39mm,35.688mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1946.62mil|Location2.X=1957.87mil|Location1.Y=1399.722mil|Location2.Y=1413.244mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1946.62mil|Location2.X=1957.87mil|Location1.Y=1399.722mil|Location2.Y=1413.244mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.216mm &lt; 0.254mm) Between Pad C6-2(50.29mm,35.088mm) on Top Layer And Track (49.39mm,34.488mm)(49.39mm,35.688mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.216mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2036.068mil|Location2.X=2047.318mil|Location1.Y=4195.753mil|Location2.Y=4207.003mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2036.068mil|Location2.X=2047.318mil|Location1.Y=4195.753mil|Location2.Y=4207.003mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad C7-1(51.159mm,107.315mm) on Top Layer And Track (52.059mm,106.715mm)(52.059mm,107.915mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2051.715mil|Location2.X=2062.965mil|Location1.Y=4243.316mil|Location2.Y=4256.838mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2051.715mil|Location2.X=2062.965mil|Location1.Y=4243.316mil|Location2.Y=4256.838mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.216mm &lt; 0.254mm) Between Pad C7-2(52.959mm,107.315mm) on Top Layer And Track (52.059mm,106.715mm)(52.059mm,107.915mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.216mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2031.501mil|Location2.X=2042.751mil|Location1.Y=3995.753mil|Location2.Y=4007.003mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2031.501mil|Location2.X=2042.751mil|Location1.Y=3995.753mil|Location2.Y=4007.003mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad C8-1(51.043mm,102.235mm) on Top Layer And Track (51.943mm,101.635mm)(51.943mm,102.835mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2047.148mil|Location2.X=2058.398mil|Location1.Y=4043.316mil|Location2.Y=4056.838mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2047.148mil|Location2.X=2058.398mil|Location1.Y=4043.316mil|Location2.Y=4056.838mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.216mm &lt; 0.254mm) Between Pad C8-2(52.843mm,102.235mm) on Top Layer And Track (51.943mm,101.635mm)(51.943mm,102.835mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.216mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2221.582mil|Location2.X=2232.832mil|Location1.Y=1450.147mil|Location2.Y=1463.667mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2221.582mil|Location2.X=2232.832mil|Location1.Y=1450.147mil|Location2.Y=1463.667mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.203mm &lt; 0.254mm) Between Pad J8-1(58.928mm,36.226mm) on Multi-Layer And Track (54.428mm,37.026mm)(56.428mm,37.026mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.203mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2407.166mil|Location2.X=2418.416mil|Location1.Y=1447.911mil|Location2.Y=1461.397mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2407.166mil|Location2.X=2418.416mil|Location1.Y=1447.911mil|Location2.Y=1461.397mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.203mm &lt; 0.254mm) Between Pad J8-1(58.928mm,36.226mm) on Multi-Layer And Track (61.428mm,37.026mm)(63.428mm,37.026mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.203mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1341.935mil|Location2.X=1353.185mil|Location1.Y=4045.753mil|Location2.Y=4057.003mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1341.935mil|Location2.X=1353.185mil|Location1.Y=4045.753mil|Location2.Y=4057.003mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad R1-1(33.528mm,103.505mm) on Top Layer And Track (34.428mm,102.905mm)(34.428mm,104.105mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1357.581mil|Location2.X=1368.831mil|Location1.Y=4093.316mil|Location2.Y=4106.838mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1357.581mil|Location2.X=1368.831mil|Location1.Y=4093.316mil|Location2.Y=4106.838mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.216mm &lt; 0.254mm) Between Pad R1-2(35.328mm,103.505mm) on Top Layer And Track (34.428mm,102.905mm)(34.428mm,104.105mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.216mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1721.737mil|Location2.X=1732.987mil|Location1.Y=1602.643mil|Location2.Y=1613.893mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1721.737mil|Location2.X=1732.987mil|Location1.Y=1602.643mil|Location2.Y=1613.893mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad R2-1(43.175mm,41.45mm) on Top Layer And Track (44.075mm,40.85mm)(44.075mm,42.05mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1737.384mil|Location2.X=1748.634mil|Location1.Y=1650.205mil|Location2.Y=1663.728mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1737.384mil|Location2.X=1748.634mil|Location1.Y=1650.205mil|Location2.Y=1663.728mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.216mm &lt; 0.254mm) Between Pad R2-2(44.975mm,41.45mm) on Top Layer And Track (44.075mm,40.85mm)(44.075mm,42.05mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.216mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1868.824mil|Location2.X=1880.074mil|Location1.Y=4010.753mil|Location2.Y=4022.003mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1868.824mil|Location2.X=1880.074mil|Location1.Y=4010.753mil|Location2.Y=4022.003mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.25mm &lt; 0.254mm) Between Pad U7-1(46.736mm,102.616mm) on Top Layer And Track (45.861mm,101.791mm)(47.611mm,101.791mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.25mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDWHUSVFZMJ4V5L22VYE4KZZYERMMHW03OBGSJA4HLB25WGA5CJDMB"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1831.173mil|Location2.X=1838.84mil|Location1.Y=4937.921mil|Location2.Y=4945.587mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\chama\Desktop\EDRProject\3D_Scanner\PCB1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1831.173mil|Location2.X=1838.84mil|Location1.Y=4937.921mil|Location2.Y=4945.587mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "J2" (45.847mm,124.333mm) on Top Overlay And Track (43.851mm,125.521mm)(57.011mm,125.521mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

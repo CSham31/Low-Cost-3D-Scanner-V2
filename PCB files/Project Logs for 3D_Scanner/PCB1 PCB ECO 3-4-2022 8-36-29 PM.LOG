@@ -1,0 +1,9 @@
+Added Member To Class: ClassName=Repeat(M_Driver,3) Member=Component C1 Cap Pol1
+Added Member To Class: ClassName=Sheet Member=Component C4 Cap2
+Added Member To Class: ClassName=Sheet Member=Component C5 Cap2
+Added Member To Class: ClassName=Sheet Member=Component C6 Cap2
+Added Member To Class: ClassName=Sheet Member=Component R1 Res1
+Added Member To Class: ClassName=Sheet Member=Component S1 FLASH
+Added Member To Class: ClassName=Sheet Member=Component S2 SW-PB
+Added Room: Name=Repeat(M_Driver,3)
+Added Room: Name=Sheet
