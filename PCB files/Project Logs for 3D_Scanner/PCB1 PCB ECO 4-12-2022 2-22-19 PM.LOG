@@ -1,0 +1,36 @@
+Removed Pin From Net: NetName=GND Pin=SW1-1
+Change Component Designator: OldDesignator=J4 NewDesignator=J5
+Change Component Designator: OldDesignator=J5 NewDesignator=J6
+Change Component Designator: OldDesignator=J6 NewDesignator=J7
+Change Component Designator: OldDesignator=J7 NewDesignator=J9
+Change Component Designator: OldDesignator=J8 NewDesignator=J10
+Change Component Designator: OldDesignator=J9 NewDesignator=J11
+Change Component Designator: OldDesignator=J10 NewDesignator=J12
+Added Component: Designator=J4(JST_4P)
+Added Component: Designator=J8(JST_5P)
+Added Pin To Net: NetName=+5 Pin=J4-1
+Added Pin To Net: NetName=GND Pin=J4-2
+Added Pin To Net: NetName=GND Pin=J8-1
+Added Pin To Net: NetName=+5 Pin=J8-2
+Change Net Name : Old Net Name=NetJ9_1 New Net Name=NetJ11_1
+Added Pin To Net: NetName=OUT_A Pin=J8-3
+Added Pin To Net: NetName=OUT_A Pin=U2-21
+Added Net: Name=OUT_A
+Added Pin To Net: NetName=OUT_B Pin=J8-4
+Added Pin To Net: NetName=OUT_B Pin=U2-22
+Added Net: Name=OUT_B
+Added Pin To Net: NetName=SCL Pin=J4-4
+Added Pin To Net: NetName=SCL Pin=U2-36
+Added Net: Name=SCL
+Added Pin To Net: NetName=SDA Pin=J4-3
+Added Pin To Net: NetName=SDA Pin=U2-33
+Added Net: Name=SDA
+Added Pin To Net: NetName=SW Pin=J8-5
+Added Pin To Net: NetName=SW Pin=U2-23
+Added Net: Name=SW
+Added Member To Class: ClassName=Sheet Member=Component J11 connector
+Added Member To Class: ClassName=Sheet Member=Component J12 DC_JACK
+Added Room: Name=Sheet
+Added Room: Name=SM1
+Added Room: Name=SM2
+Added Room: Name=SM3

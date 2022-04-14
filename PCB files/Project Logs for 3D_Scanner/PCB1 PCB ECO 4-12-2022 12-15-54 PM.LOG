@@ -1,0 +1,10 @@
+Removed Pin From Net: NetName=MISO Pin=J3-3
+Removed Pin From Net: NetName=MOSI Pin=J3-4
+Removed Pin From Net: NetName=GND Pin=SW1-1
+Removed Pin From Net: NetName=NetSW2_2 Pin=SW2-1
+Added Pin To Net: NetName=MOSI Pin=J3-3
+Added Pin To Net: NetName=MISO Pin=J3-4
+Added Room: Name=Sheet
+Added Room: Name=SM1
+Added Room: Name=SM2
+Added Room: Name=SM3

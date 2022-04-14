@@ -1,0 +1,22 @@
+Change Component Designator: OldDesignator=J10 NewDesignator=J9
+Change Component Designator: OldDesignator=J? NewDesignator=J2
+Change Component Designator: OldDesignator=J? NewDesignator=J4
+Change Component Designator: OldDesignator=J? NewDesignator=J5
+Change Component Designator: OldDesignator=J? NewDesignator=J6
+Change Component Designator: OldDesignator=J? NewDesignator=J7
+Change Component Designator: OldDesignator=J? NewDesignator=J8
+Added Component: Designator=J?(JST_2P)
+Added Pin To Net: NetName=+12 Pin=J?-2
+Added Pin To Net: NetName=NetJ9_1 Pin=J9-1
+Added Pin To Net: NetName=NetJ9_1 Pin=J?-1
+Added Net: Name=NetJ9_1
+Added Member To Class: ClassName=Sheet Member=Component J2 connector
+Added Member To Class: ClassName=Sheet Member=Component J4 Sharp IR
+Added Member To Class: ClassName=Sheet Member=Component J5 Sharp IR
+Added Member To Class: ClassName=Sheet Member=Component J6 connector
+Added Member To Class: ClassName=Sheet Member=Component J8 Endstop
+Added Member To Class: ClassName=Sheet Member=Component J? connector
+Added Room: Name=Sheet
+Added Room: Name=SM1
+Added Room: Name=SM2
+Added Room: Name=SM3

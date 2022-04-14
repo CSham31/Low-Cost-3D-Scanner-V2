@@ -1,0 +1,12 @@
+Removed Pin From Net: NetName=RXD Pin=J2-2
+Removed Pin From Net: NetName=TXD Pin=J2-3
+Change Component Designator: OldDesignator=J9 NewDesignator=J10
+Change Component Designator: OldDesignator=J? NewDesignator=J9
+Added Pin To Net: NetName=TXD Pin=J2-2
+Added Pin To Net: NetName=RXD Pin=J2-3
+Added Member To Class: ClassName=Sheet Member=Component J7 Endstop
+Added Member To Class: ClassName=Sheet Member=Component J10 DC_JACK
+Added Room: Name=Sheet
+Added Room: Name=SM1
+Added Room: Name=SM2
+Added Room: Name=SM3

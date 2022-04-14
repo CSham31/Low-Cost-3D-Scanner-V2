@@ -1,0 +1,40 @@
+Change Component Comment : Designator=SW1 Old Comment=1825910-6 New Comment=RESET_SW
+Change Component Comment : Designator=J7 Old Comment=connector New Comment=FAN
+Change Component Comment : Designator=J11 Old Comment=connector New Comment=PWR_SW
+Change Component Comment : Designator=J2 Old Comment=connector New Comment=TTL
+Change Component Comment : Designator=U2 Old Comment=esp32 New Comment=ESP_32
+Change Component Comment : Designator=J8 Old Comment=JST_5P New Comment=ENCODER
+Added Component: Designator=LS1(FP-SDC1610M5-01-MFG)
+Add component (AddParameter): Name = "Diameter"; Value = "16mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Frequency"; Value = "2.4kHz"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height"; Value = "10mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Input Type"; Value = "DC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lead Free"; Value = "Lead Free"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Operating Temperature"; Value = "70°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Supply Current"; Value = "30mA"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Min Operating Temperature"; Value = "-10°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mount"; Value = "Through Hole"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Nominal Supply Voltage (DC)"; Value = "5V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Number of Pins"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Number of Terminals/Pins"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Supply Current"; Value = "30mA"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Packaging"; Value = "Tray"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Sensing Method"; Value = "Magnetic"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Series"; Value = "SDC"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Termination"; Value = "PC Pins"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage Rating"; Value = "5V"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=LS1-1
+Added Pin To Net: NetName=BUZZ Pin=LS1-2
+Added Pin To Net: NetName=BUZZ Pin=U2-16
+Added Net: Name=BUZZ
+Added Member To Class: ClassName=Sheet Member=Component J4 LED_I2C
+Added Member To Class: ClassName=Sheet Member=Component J5 Sharp IR
+Added Member To Class: ClassName=Sheet Member=Component J6 Sharp IR
+Added Member To Class: ClassName=Sheet Member=Component J8 ENCODER
+Added Member To Class: ClassName=Sheet Member=Component J9 Endstop
+Added Member To Class: ClassName=Sheet Member=Component J10 Endstop
+Added Member To Class: ClassName=Sheet Member=Component LS1 SDC1610M5-01
+Added Room: Name=Sheet
+Added Room: Name=SM1
+Added Room: Name=SM2
+Added Room: Name=SM3

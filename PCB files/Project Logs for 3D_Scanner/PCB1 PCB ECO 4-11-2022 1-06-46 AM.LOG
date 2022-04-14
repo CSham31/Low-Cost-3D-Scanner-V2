@@ -1,0 +1,64 @@
+Added Component: Designator=*(SD_CARD)
+Added Component: Designator=J1_SM1(JST_4P)
+Added Component: Designator=J1_SM2(JST_4P)
+Added Component: Designator=J1_SM3(JST_4P)
+Added Component: Designator=J2(TTL)
+Added Component: Designator=J3(SHARP_IR)
+Added Component: Designator=J4(SHARP_IR)
+Added Component: Designator=J5(JST_2P)
+Added Component: Designator=J6(ENDSTOP)
+Added Component: Designator=J7(ENDSTOP)
+Added Component: Designator=J9(JST_2P)
+Added Pin To Net: NetName=+5 Pin=*-1
+Added Pin To Net: NetName=GND Pin=*-2
+Added Pin To Net: NetName=MISO Pin=*-3
+Added Pin To Net: NetName=MOSI Pin=*-4
+Added Pin To Net: NetName=SCK Pin=*-5
+Added Pin To Net: NetName=CS_SD Pin=*-6
+Added Pin To Net: NetName=NetJ1_SM1_1 Pin=J1_SM1-1
+Added Pin To Net: NetName=NetJ1_SM1_2 Pin=J1_SM1-2
+Added Pin To Net: NetName=NetJ1_SM1_3 Pin=J1_SM1-3
+Added Pin To Net: NetName=NetJ1_SM1_4 Pin=J1_SM1-4
+Added Pin To Net: NetName=NetJ1_SM2_1 Pin=J1_SM2-1
+Added Pin To Net: NetName=NetJ1_SM2_2 Pin=J1_SM2-2
+Added Pin To Net: NetName=NetJ1_SM2_3 Pin=J1_SM2-3
+Added Pin To Net: NetName=NetJ1_SM2_4 Pin=J1_SM2-4
+Added Pin To Net: NetName=NetJ1_SM3_1 Pin=J1_SM3-1
+Added Pin To Net: NetName=NetJ1_SM3_2 Pin=J1_SM3-2
+Added Pin To Net: NetName=NetJ1_SM3_3 Pin=J1_SM3-3
+Added Pin To Net: NetName=NetJ1_SM3_4 Pin=J1_SM3-4
+Added Pin To Net: NetName=+5 Pin=J2-1
+Added Pin To Net: NetName=RXD Pin=J2-2
+Added Pin To Net: NetName=TXD Pin=J2-3
+Added Pin To Net: NetName=GND Pin=J2-4
+Added Pin To Net: NetName=+5 Pin=J3-1
+Added Pin To Net: NetName=GND Pin=J3-2
+Added Pin To Net: NetName=SHARP1 Pin=J3-3
+Added Pin To Net: NetName=+5 Pin=J4-1
+Added Pin To Net: NetName=GND Pin=J4-2
+Added Pin To Net: NetName=SHARP2 Pin=J4-3
+Added Pin To Net: NetName=+12 Pin=J5-1
+Added Pin To Net: NetName=GND Pin=J5-2
+Added Pin To Net: NetName=+5 Pin=J6-1
+Added Pin To Net: NetName=GND Pin=J6-2
+Added Pin To Net: NetName=ES_1 Pin=J6-3
+Added Pin To Net: NetName=+5 Pin=J7-1
+Added Pin To Net: NetName=GND Pin=J7-2
+Added Pin To Net: NetName=ES_2 Pin=J7-3
+Added Pin To Net: NetName=NetJ8_1 Pin=J9-1
+Added Pin To Net: NetName=+12 Pin=J9-2
+Added Member To Class: ClassName=Sheet Member=Component * SD_CARD
+Added Member To Class: ClassName=SM1 Member=Component J1_SM1 (J1) connector
+Added Member To Class: ClassName=SM2 Member=Component J1_SM2 (J1) connector
+Added Member To Class: ClassName=SM3 Member=Component J1_SM3 (J1) connector
+Added Member To Class: ClassName=Sheet Member=Component J2 connector
+Added Member To Class: ClassName=Sheet Member=Component J3 Sharp IR
+Added Member To Class: ClassName=Sheet Member=Component J4 Sharp IR
+Added Member To Class: ClassName=Sheet Member=Component J5 connector
+Added Member To Class: ClassName=Sheet Member=Component J6 Endstop
+Added Member To Class: ClassName=Sheet Member=Component J7 Endstop
+Added Member To Class: ClassName=Sheet Member=Component J9 connector
+Added Room: Name=Sheet
+Added Room: Name=SM1
+Added Room: Name=SM2
+Added Room: Name=SM3

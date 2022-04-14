@@ -1,0 +1,19 @@
+Added Component: Designator=U1_SM3(A4988)
+Added Pin To Net: NetName=EN3 Pin=U1_SM3-1
+Added Pin To Net: NetName=NetU1_SM3_5 Pin=U1_SM3-5
+Added Pin To Net: NetName=NetU1_SM3_5 Pin=U1_SM3-6
+Added Pin To Net: NetName=STEP3 Pin=U1_SM3-7
+Added Pin To Net: NetName=DIR3 Pin=U1_SM3-8
+Added Pin To Net: NetName=GND Pin=U1_SM3-9
+Added Pin To Net: NetName=+5 Pin=U1_SM3-10
+Added Pin To Net: NetName=NetJ1_SM3_4 Pin=U1_SM3-11
+Added Pin To Net: NetName=NetJ1_SM3_3 Pin=U1_SM3-12
+Added Pin To Net: NetName=NetJ1_SM3_2 Pin=U1_SM3-13
+Added Pin To Net: NetName=NetJ1_SM3_1 Pin=U1_SM3-14
+Added Pin To Net: NetName=GND Pin=U1_SM3-15
+Added Pin To Net: NetName=+12 Pin=U1_SM3-16
+Added Member To Class: ClassName=SM3 Member=Component U1_SM3 (U1) Stepper Motor Driver
+Added Room: Name=Sheet
+Added Room: Name=SM1
+Added Room: Name=SM2
+Added Room: Name=SM3
