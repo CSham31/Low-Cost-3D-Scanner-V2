@@ -1,0 +1,16 @@
+Added Component: Designator=J1(JST_2P)
+Add Component: Footprint Not Found 6-0805_N
+Add Component: Footprint Not Found 6-0805_N
+Add Component: Footprint Not Found 6-0805_N
+Added Pin To Net: NetName=GND Pin=J1-1
+Added Pin To Net: NetName=+5V Pin=J1-2
+Add Pin To Net: Unknown Pin: Pin R1-1
+Add Pin To Net: Unknown Pin: Pin R1-2
+Add Pin To Net: Unknown Pin: Pin R2-1
+Add Pin To Net: Unknown Pin: Pin R2-2
+Add Pin To Net: Unknown Pin: Pin R3-1
+Add Pin To Net: Unknown Pin: Pin R3-2
+Added Member To Class: ClassName=SheetCopied Member=Component J1 Power
+Add Class Member: Failed to add class member : Component R1 Res1
+Add Class Member: Failed to add class member : Component R2 Res1
+Add Class Member: Failed to add class member : Component R3 Res1

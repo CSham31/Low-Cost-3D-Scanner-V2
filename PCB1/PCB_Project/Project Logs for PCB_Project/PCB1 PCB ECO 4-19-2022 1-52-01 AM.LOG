@@ -1,0 +1,18 @@
+Added Component: Designator=R1(RESC2013X60X40ML20T25)
+Add component (AddParameter): Name = "Manufacturer"; Value = "Panasonic"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Number"; Value = "ERA6AEB332V"; VariantName = "[No Variations]"
+Added Component: Designator=R2(RESC2013X60X40ML20T25)
+Add component (AddParameter): Name = "Manufacturer"; Value = "Panasonic"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Number"; Value = "ERA6AEB332V"; VariantName = "[No Variations]"
+Added Component: Designator=R3(RESC2013X60X40ML20T25)
+Add component (AddParameter): Name = "Manufacturer"; Value = "Panasonic"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Number"; Value = "ERA6AEB332V"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+5V Pin=R1-1
+Added Pin To Net: NetName=PB Pin=R1-2
+Added Pin To Net: NetName=CLK Pin=R2-1
+Added Pin To Net: NetName=+5V Pin=R2-2
+Added Pin To Net: NetName=DT Pin=R3-1
+Added Pin To Net: NetName=+5V Pin=R3-2
+Added Member To Class: ClassName=SheetCopied Member=Component R1 Res
+Added Member To Class: ClassName=SheetCopied Member=Component R2 Res
+Added Member To Class: ClassName=SheetCopied Member=Component R3 Res
