@@ -1,0 +1,11 @@
+Added Pin To Net: NetName=+5 Pin=C7-1
+Added Pin To Net: NetName=GND Pin=C7-2
+Added Pin To Net: NetName=+3V3 Pin=C8-1
+Added Pin To Net: NetName=GND Pin=C8-2
+Added Pin To Net: NetName=GND Pin=U4-1
+Added Pin To Net: NetName=+3V3 Pin=U4-2
+Added Pin To Net: NetName=+5 Pin=U4-3
+Added Pin To Net: NetName=GND Pin=U4-4
+Added Member To Class: ClassName=Sheet Member=Component C7 Cap Pol1
+Added Member To Class: ClassName=Sheet Member=Component C8 Cap Pol1
+Added Member To Class: ClassName=Sheet Member=Component U4 LM1117_3V3
